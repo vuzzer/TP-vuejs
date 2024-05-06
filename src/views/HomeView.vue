@@ -1,5 +1,5 @@
 <script setup>
-import { popularMovie } from '@/data/movie';
+import { popularMovie, getUrlImage } from '@/data/movie';
 import TheWelcome from '../components/TheWelcome.vue'
 </script>
 
@@ -7,18 +7,21 @@ import TheWelcome from '../components/TheWelcome.vue'
 export default {
   data(){
     return {
-      products: null
+      products: null,
+      image: null
     };
   },
-  created(){
-    popularMovie();
+  async created(){
+    this.products = await popularMovie();
+    this.image = getUrlImage('tMefBSflR6PGQLv7WvFPpKLZkyk.jpg');
   }
 };
 </script>
 
 <template>
   <main>
-    <TheWelcome />
+    <img :src="image" alt="" srcset="">
+    {{products}}
   </main>
 </template>
 
